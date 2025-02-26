@@ -18,6 +18,19 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            $table->string('nik')->unique();
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('pendidikan')->nullable();
+            $table->string('alamat')->nullable();
+            $table->foreignId('kabupaten_id')->constrained('kabupaten')->nullable();
+            $table->foreignId('kecamatan_id')->constrained('kecamatan')->nullable();
+            $table->foreignId('desa_id')->constrained('desa')->nullable();
+            $table->integer('no_alamat')->nullable();
+            $table->string('no_telp')->nullable();
+
             $table->timestamps();
         });
 
