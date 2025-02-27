@@ -48,12 +48,12 @@ class Pasien extends Model
 
     public function pasien()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'nik_pasien', 'nik');
     }
 
     public function keluarga_pendamping()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'nik_keluarga_pendamping', 'nik');
     }
 
     public function relawan_pendamping()

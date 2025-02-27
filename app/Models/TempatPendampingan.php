@@ -14,7 +14,7 @@ class TempatPendampingan extends Model
         'kategori',
         'nama', 
         'alamat', 
-        'deskripsi',
+        'no_telp',
         'PIC'
     ];
 }
