@@ -21,6 +21,7 @@ class PersoalanPendidikanResource extends Resource
     protected static ?string $navigationLabel = 'Persoalan Pendidikan';
     protected static ?string $navigationGroup = 'Administrasi';
     protected static ?int $navigationSort = 5;
+    protected static ?string $pluralLabel = 'Persoalan Pendidikan';
 
     public static function form(Form $form): Form
     {

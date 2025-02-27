@@ -21,6 +21,7 @@ class ProvinsiResource extends Resource
     protected static ?string $navigationLabel = 'Provinsi';
     protected static ?string $navigationGroup = 'Alamat';
     protected static ?int $navigationSort = 1;
+    protected static ?string $pluralLabel = 'Provinsi';
 
     public static function form(Form $form): Form
     {

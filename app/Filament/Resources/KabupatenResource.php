@@ -21,6 +21,7 @@ class KabupatenResource extends Resource
     protected static ?string $navigationLabel = 'Kabupaten';
     protected static ?string $navigationGroup = 'Alamat';
     protected static ?int $navigationSort = 2;
+    protected static ?string $pluralLabel = 'Kabupaten';
 
     public static function form(Form $form): Form
     {

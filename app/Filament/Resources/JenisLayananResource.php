@@ -21,6 +21,7 @@ class JenisLayananResource extends Resource
     protected static ?string $navigationLabel = 'Jenis Layanan';
     protected static ?string $navigationGroup = 'Administrasi';
     protected static ?int $navigationSort = 4;
+    protected static ?string $pluralLabel = 'Jenis Layanan';
 
     public static function form(Form $form): Form
     {

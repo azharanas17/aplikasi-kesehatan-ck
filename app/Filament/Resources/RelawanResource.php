@@ -23,6 +23,7 @@ class RelawanResource extends Resource
     protected static ?string $navigationLabel = 'Relawan';
     protected static ?string $navigationGroup = 'Administrasi';
     protected static ?int $navigationSort = 2;
+    protected static ?string $pluralLabel = 'Relawan';
 
     public static function form(Form $form): Form
     {

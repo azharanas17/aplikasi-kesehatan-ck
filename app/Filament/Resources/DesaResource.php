@@ -21,6 +21,7 @@ class DesaResource extends Resource
     protected static ?string $navigationLabel = 'Desa';
     protected static ?string $navigationGroup = 'Alamat';
     protected static ?int $navigationSort = 4;
+    protected static ?string $pluralLabel = 'Desa';
 
     public static function form(Form $form): Form
     {

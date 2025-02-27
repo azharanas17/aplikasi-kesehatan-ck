@@ -21,6 +21,7 @@ class TempatPendampinganResource extends Resource
     protected static ?string $navigationLabel = 'Tempat Pendampingan';
     protected static ?string $navigationGroup = 'Administrasi';
     protected static ?int $navigationSort = 6;
+    protected static ?string $pluralLabel = 'Tempat Pendampingan';
 
     public static function form(Form $form): Form
     {

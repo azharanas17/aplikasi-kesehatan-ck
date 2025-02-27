@@ -21,6 +21,7 @@ class KecamatanResource extends Resource
     protected static ?string $navigationLabel = 'Kecamatan';
     protected static ?string $navigationGroup = 'Alamat';
     protected static ?int $navigationSort = 3;
+    protected static ?string $pluralLabel = 'Kecamatan';
 
     public static function form(Form $form): Form
     {

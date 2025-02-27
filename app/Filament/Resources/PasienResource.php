@@ -21,6 +21,7 @@ class PasienResource extends Resource
     protected static ?string $navigationLabel = 'Pasien';
     protected static ?string $navigationGroup = 'Pendataan Pendampingan';
     protected static ?int $navigationSort = 1;
+    protected static ?string $pluralLabel = 'Pasien';
 
     public static function form(Form $form): Form
     {

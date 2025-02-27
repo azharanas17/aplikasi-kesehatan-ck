@@ -21,6 +21,7 @@ class SuratKuasaResource extends Resource
     protected static ?string $navigationLabel = 'Surat Kuasa';
     protected static ?string $navigationGroup = 'Administrasi';
     protected static ?int $navigationSort = 3;
+    protected static ?string $pluralLabel = 'Surat Kuasa';
 
     public static function form(Form $form): Form
     {
