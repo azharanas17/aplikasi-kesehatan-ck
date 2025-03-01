@@ -42,6 +42,61 @@ class TempatPendampinganResource extends Resource
                     ->label('Alamat')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('kabupaten_id')
+                    ->label('Kabupaten/Kota')
+                    ->options(
+                        \App\Models\Kabupaten::all()
+                            ->pluck('nama', 'id')
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->live()
+                    ->createOptionForm([
+                        Forms\Components\Select::make('provinsi_id')
+                            ->label('Provinsi')
+                            ->options(Provinsi::all()->pluck('nama', 'id'))
+                            ->searchable()
+                            ->preload(),
+                        Forms\Components\TextInput::make('nama')
+                            ->label('Nama Kabupaten/Kota')
+                            ->required(),
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        return Kabupaten::create([
+                            'provinsi_id' => $data['provinsi_id'],
+                            'nama' => $data['nama'],
+                        ])->id;
+                    })
+                    ->afterStateUpdated(function (Set $set) {
+                        $set('kecamatan_id', null);
+                        $set('desa_id', null);
+                    })
+                    ->required(),
+                Forms\Components\Select::make('kecamatan_id')
+                    ->label('Kecamatan')
+                    ->options(fn (Get $get): Collection => 
+                        \App\Models\Kecamatan::where('kabupaten_id', $get('kabupaten_id'))->pluck('nama', 'id')
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->live()
+                    ->createOptionForm([
+                        Forms\Components\Select::make('kabupaten_id')
+                            ->label('Kabupaten/Kota')
+                            ->options(Kabupaten::all()->pluck('nama', 'id'))
+                            ->searchable()
+                            ->preload(),
+                        Forms\Components\TextInput::make('nama')
+                            ->label('Nama Kecamatan')
+                            ->required(),
+                    ])
+                    ->createOptionUsing(function (array $data) {
+                        return Kecamatan::create([
+                            'kabupaten_id' => $data['kabupaten_id'],
+                            'nama' => $data['nama'],
+                        ])->id;
+                    })
+                    ->required(),
                 Forms\Components\TextInput::make('no_telp')
                     ->label('No. Telp')
                     ->required()
@@ -71,6 +126,14 @@ class TempatPendampinganResource extends Resource
                     ->label('Alamat')
                     ->sortable()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('kabupaten.nama')
+                    ->label('Kabupaten')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('kecamatan.nama')
+                    ->label('Kecamatan')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('no_telp')
                     ->label('No. Telp')
                     ->searchable(),

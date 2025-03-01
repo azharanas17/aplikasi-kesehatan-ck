@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('kategori');
             $table->string('nama');
             $table->string('alamat')->nullable();
+            $table->foreignId('kabupaten_id')->constrained('kabupaten')->nullable();
+            $table->foreignId('kecamatan_id')->constrained('kecamatan')->nullable();
             $table->string('no_telp')->nullable();
             $table->string('PIC')->nullable();
             $table->timestamps();
