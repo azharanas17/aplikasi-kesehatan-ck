@@ -14,8 +14,8 @@ class SuratKuasaController extends Controller
         $surat_kuasa = SuratKuasa::findOrFail($id);
         $pdf = Pdf::loadView('pdf.surat_kuasa', compact('surat_kuasa'));
         return $surat_kuasa->nik_penerima_kuasa_2 ? 
-            $pdf->stream('Surat Kuasa - ' . $surat_kuasa->penerima_kuasa_1->name . ' - ' . $surat_kuasa->penerima_kuasa_2->name . '.pdf') :
-            $pdf->stream('Surat Kuasa - ' . $surat_kuasa->penerima_kuasa_1->name . '.pdf');
+            $pdf->stream('Surat Kuasa - ' . $surat_kuasa->penerima_kuasa_1->relawan->name . ' - ' . $surat_kuasa->penerima_kuasa_2->relawan->name . '.pdf') :
+            $pdf->stream('Surat Kuasa - ' . $surat_kuasa->penerima_kuasa_1->relawan->name . '.pdf');
     }
 
     /**
