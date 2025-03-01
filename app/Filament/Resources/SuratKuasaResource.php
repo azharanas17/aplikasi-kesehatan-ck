@@ -41,6 +41,10 @@ class SuratKuasaResource extends Resource
                     ->relationship('pasien', 'nik')
                     ->searchable()
                     ->required(),
+                Forms\Components\TextInput::make('penyakit')
+                    ->label('Penyakit')
+                    ->maxLength(255)
+                    ->required(),
                 Forms\Components\Select::make('nik_penerima_kuasa_1')
                     ->label('NIK Penerima Kuasa 1')
                     ->relationship('penerima_kuasa_1', 'nik')
@@ -68,6 +72,11 @@ class SuratKuasaResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pasien.name')
                     ->label('Pasien')
+                    ->sortable()
+                    ->toggleable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('penyakit')
+                    ->label('Penyakit')
                     ->sortable()
                     ->toggleable()
                     ->searchable(),

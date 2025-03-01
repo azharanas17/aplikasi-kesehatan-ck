@@ -15,6 +15,7 @@ class SuratKuasa extends Model
         'nik_pemberi_kuasa', 
         'hubungan',
         'nik_pasien',
+        'penyakit',
         'nik_penerima_kuasa_1',
         'nik_penerima_kuasa_2',
     ];

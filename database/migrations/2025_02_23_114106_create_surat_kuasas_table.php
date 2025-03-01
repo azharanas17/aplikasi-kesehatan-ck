@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('hubungan')->nullable();
             $table->string('nik_pasien');
             $table->foreign('nik_pasien')->references('nik')->on('users')->onDelete('cascade');
+            $table->string('penyakit')->nullable();
             $table->string('nik_penerima_kuasa_1');
             $table->foreign('nik_penerima_kuasa_1')->references('nik')->on('users')->onDelete('cascade');
             $table->string('nik_penerima_kuasa_2')->nullable();
