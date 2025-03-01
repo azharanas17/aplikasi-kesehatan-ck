@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -47,12 +48,12 @@ class SuratKuasaResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('nik_penerima_kuasa_1')
                     ->label('NIK Penerima Kuasa 1')
-                    ->relationship('penerima_kuasa_1', 'nik')
+                    ->relationship('penerima_kuasa_1', 'nik_relawan')
                     ->searchable()
                     ->required(),
                 Forms\Components\Select::make('nik_penerima_kuasa_2')
                     ->label('NIK Penerima Kuasa 2')
-                    ->relationship('penerima_kuasa_2', 'nik')
+                    ->relationship('penerima_kuasa_2', 'nik_relawan')
                     ->searchable(),
             ]);
     }
@@ -80,12 +81,12 @@ class SuratKuasaResource extends Resource
                     ->sortable()
                     ->toggleable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('penerima_kuasa_1.name')
+                Tables\Columns\TextColumn::make('penerima_kuasa_1.relawan.name')
                     ->label('Penerima Kuasa 1')
                     ->sortable()
                     ->toggleable()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('penerima_kuasa_2.name')
+                Tables\Columns\TextColumn::make('penerima_kuasa_2.relawan.name')
                     ->label('Penerima Kuasa 2')
                     ->sortable()
                     ->toggleable()
@@ -104,6 +105,12 @@ class SuratKuasaResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+
+                Action::make('cetak-pdf')
+                    ->label('Cetak PDF')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->url(fn(SuratKuasa $record): string => static::getUrl('surat-kuasa.cetak-pdf', ['id' => $record->id])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -125,6 +132,8 @@ class SuratKuasaResource extends Resource
             'index' => Pages\ListSuratKuasas::route('/'),
             'create' => Pages\CreateSuratKuasa::route('/create'),
             'edit' => Pages\EditSuratKuasa::route('/{record}/edit'),
+            // 'cetak-pdf' => Pages\ViewCetakPdf::route('/{record}/cetak-pdf'),
+
         ];
     }
 }
