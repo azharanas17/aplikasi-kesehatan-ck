@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Formulir Data Pasien</title>
+    <title>Formulir Data Siswa</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,66 +55,65 @@
     </style>
 </head>
 <body>
-    <img src="{{ public_path('images/watermark.png') }}" class="watermark">
+    <!-- Watermark -->
+    <img src="{{ public_path('images.png') }}" class="watermark">
 
     <div class="container">
-        <h2>Formulir Data Pasien</h2>
+        <h2>Formulir Data Siswa</h2>
         <table>
             <tr>
-                <td width="31%">Nama</td><td>: {{ $data->pasien->name }}</td>
+                <td width="30%">Nama Siswa</td><td>: {{ $data->siswa->name }}</td>
             </tr>
             <tr>
-                <td>NIK</td><td>: {{ $data->pasien->nik }}</td>
+                <td>Alamat</td><td>: {{ $data->siswa->alamat . " No." . $data->siswa->no_alamat . ", " . $data->siswa->desa->nama . ", " . $data->siswa->kecamatan->nama . ", " . $data->siswa->kabupaten->nama }}</td>
             </tr>
             <tr>
-                <td>Tanggal Lahir</td><td>: {{ $data->pasien->tanggal_lahir }}</td>
+                <td>Jenis Kelamin</td><td>: {{ $data->siswa->jenis_kelamin }}</td>
             </tr>
             <tr>
-                <td>Alamat</td><td>: {{ $data->pasien->alamat . " No." . $data->pasien->no_alamat . ", " . $data->pasien->desa->nama . ", " . $data->pasien->kecamatan->nama . ", " . $data->pasien->kabupaten->nama }}</td>
+                <td>Nama Orang Tua/Wali</td><td>: {{ $data->wali->name }}</td>
             </tr>
             <tr>
-                <td>Keluarga Pendamping</td><td>: {{ $data->keluarga_pendamping->name }}</td>
+                <td>No. HP Orang Tua</td><td>: {{ $data->wali->no_telp }}</td>
             </tr>
             <tr>
-                <td>No. HP</td><td>: {{ $data->keluarga_pendamping->no_telp }}</td>
+                <td>Nama Sekolah</td><td>: {{ $data->sekolah->nama }}</td>
+            </tr>
+            <tr>
+                <td>Jurusan</td><td>: {{ $data->jurusan }}</td>
+            </tr>
+            {{-- <tr>
+                <td>NIS</td><td>: {{ $data-> }}</td>
+            </tr> --}}
+            <tr>
+                <td>Alamat Sekolah</td><td>: {{ $data->sekolah->alamat }}</td>
+            </tr>
+            <tr>
+                <td>Kecamatan</td><td>: {{ $data->sekolah->kecamatan->nama }}</td>
+            </tr>
+            <tr>
+                <td>Kabupaten/Kota</td><td>: {{ $data->sekolah->kabupaten->nama }}</td>
             </tr>
         </table>
 
+        <p><strong>Persoalan pendidikan yang dihadapi:</strong></p>
         <table>
             <tr>
-                <td><label><input type="checkbox" {{ $data->jenis_layanan_id == 1 ? 'checked' : '' }}> <strong>IRD</strong></label></td>
-                <td><label><input type="checkbox" {{ $data->jenis_layanan_id == 2 ? 'checked' : '' }}> <strong>IRJA</strong></label></td>
-                <td><label><input type="checkbox" {{ $data->jenis_layanan_id == 3 ? 'checked' : '' }}> <strong>IRNA</strong></label></td>
+                <td><input type="checkbox" {{ $data->persoalan_pendidikan_id == 1 ? 'checked' : '' }}> Pendaftaran Masuk Sekolah</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" {{ $data->persoalan_pendidikan_id == 2 ? 'checked' : '' }}> Pendaftaran Ulang</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" {{ $data->persoalan_pendidikan_id == 3 ? 'checked' : '' }}> SPP</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" {{ $data->persoalan_pendidikan_id == 4 ? 'checked' : '' }}> Fasilitas Penunjang Pendidikan</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" {{ $data->persoalan_pendidikan_id == 5 ? 'checked' : '' }}> Pengambilan Ijazah</td>
             </tr>
         </table>
-
-        <table>
-            <tr>
-                <td width="31%">Tanggal Masuk</td><td>: {{ $data->tanggal_masuk }}</td>
-            </tr>
-            <tr>
-                <td>Jam Masuk</td><td>: {{ $data->jam_masuk }}</td>
-            </tr>
-            <tr>
-                <td>Rujukan dari</td><td>: {{ $data->rujukan->nama }}</td>
-            </tr>
-            <tr>
-                <td>Diagnosa</td><td>: {{ $data->diagnose }}</td>
-            </tr>
-            <tr>
-                <td>Status Jaminan</td><td>: {{ $data->status_jaminan }}</td>
-            </tr>
-            <tr>
-                <td>Tujuan Poli</td><td>: {{ $data->poli }}</td>
-            </tr>
-            <tr>
-                <td>Ruangan/Kamar</td><td>: {{ $data->ruangan }}</td>
-            </tr>
-            <tr>
-                <td>Keterangan tambahan</td><td>: {{ $data->keterangan }}</td>
-            </tr>
-        </table>
-        <br>
 
         <p style="color: red; font-weight: bold;">Relawan Pendamping:</p>
         <table class="red-box">

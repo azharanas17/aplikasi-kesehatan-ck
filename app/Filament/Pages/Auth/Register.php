@@ -46,8 +46,8 @@ class Register extends BaseRegister
                                         Forms\Components\Select::make('jenis_kelamin')
                                             ->label('Jenis Kelamin')
                                             ->options([
-                                                'L' => 'Laki-laki',
-                                                'P' => 'Perempuan',
+                                                'Laki-laki' => 'Laki-laki',
+                                                'Perempuan' => 'Perempuan',
                                             ])
                                             ->required(),
                                         Forms\Components\TextInput::make('tempat_lahir')
