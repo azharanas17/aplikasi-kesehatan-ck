@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\Action;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Get;
@@ -84,8 +85,30 @@ class RelawanResource extends Resource
             ->filters([
                 //
             ])
+            // ->query(function (Builder $query, array $data): Builder {
+            //     return $query;
+            //         // ->when(
+            //         //     $data['class_id'],
+            //         //     fn(Builder $query, $record): Builder => $query->where('class_id', $record),
+            //         // )
+            //         // ->when(
+            //         //     $data['section_id'],
+            //         //     fn(Builder $query, $record): Builder => $query->where('section_id', $record),
+            //         // );
+            // })
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+
+                Action::make('qr-code')
+                    ->label('QR-Code')
+                    ->icon('heroicon-o-qr-code')
+                    ->url(fn(Relawan $record): string => static::getUrl('qr-code', ['record' => $record])),
+
+                Action::make('kartu-anggota')
+                    ->label('Kartu Anggota')
+                    ->icon('heroicon-o-identification')
+                    ->url(fn(Relawan $record): string => static::getUrl('kartu-anggota', ['id' => $record->id])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -107,6 +130,7 @@ class RelawanResource extends Resource
             'index' => Pages\ListRelawans::route('/'),
             'create' => Pages\CreateRelawan::route('/create'),
             'edit' => Pages\EditRelawan::route('/{record}/edit'),
+            'qr-code' => Pages\ViewQrCode::route('/{record}/qr-code'),
         ];
     }
 }
