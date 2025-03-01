@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
+use App\Models\Relawan;
 
 class SuratKuasa extends Model
 {
@@ -32,11 +33,11 @@ class SuratKuasa extends Model
 
     public function penerima_kuasa_1()
     {
-        return $this->belongsTo(User::class, 'nik_penerima_kuasa_1', 'nik');
+        return $this->belongsTo(Relawan::class, 'nik_penerima_kuasa_1', 'nik_relawan');
     }
 
     public function penerima_kuasa_2()
     {
-        return $this->belongsTo(User::class, 'nik_penerima_kuasa_2', 'nik');
+        return $this->belongsTo(Relawan::class, 'nik_penerima_kuasa_2', 'nik_relawan');
     }
 }
