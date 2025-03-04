@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\Desa;
 
 class User extends Authenticatable
 {
@@ -21,6 +24,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+
+        'nik',
+        'jenis_kelamin',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'pendidikan',
+        'alamat',
+        'kabupaten_id',
+        'kecamatan_id',
+        'desa_id',
+        'no_alamat',
+        'no_telp',
     ];
 
     /**
@@ -44,5 +59,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
+
+    public function desa()
+    {
+        return $this->belongsTo(Desa::class);
     }
 }
